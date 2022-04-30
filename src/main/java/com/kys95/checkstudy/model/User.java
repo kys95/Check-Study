@@ -2,6 +2,7 @@ package com.kys95.checkstudy.model;
 
 
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,10 +11,12 @@ import javax.persistence.*;
 
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Builder
 @Entity
 public class User  extends BaseTimeEntity{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
