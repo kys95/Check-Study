@@ -12,7 +12,7 @@ let index ={
             nickname:$("#nickname").val(),
         };
 
-        console.log(data["username"]);
+
 
         $.ajax({
             type:"POST",
