@@ -32,4 +32,4 @@ public class Task {
     @ManyToOne
     @JoinColumn(name="userId")
     private User user;
-}}
+}
