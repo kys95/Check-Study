@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Data
@@ -15,19 +16,15 @@ public class TaskWriteDto {
 
     private String title;
     private String content;
-    private LocalDateTime deadline;
-    private User user;
-    private int isSuccess;
-    private String stringDeadline;
+    private Timestamp deadline;
 
 
     @Builder
-    public TaskWriteDto(String title, String content, LocalDateTime deadline, User user, int isSuccess){
+    public TaskWriteDto(String title, String content, Timestamp deadline){
         this.title = title;
         this.content = content;
         this.deadline = deadline;
-        this.user = user;
-        this.isSuccess = isSuccess;
+
     }
 
     public Task toEntity(){
@@ -35,9 +32,6 @@ public class TaskWriteDto {
                 .title(title)
                 .content(content)
                 .deadline(deadline)
-                .user(user)
-                .isSuccess(isSuccess)
-                .stringDeadline(stringDeadline)
                 .build();
     }
 }
