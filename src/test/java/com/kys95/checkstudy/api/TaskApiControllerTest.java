@@ -13,7 +13,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.sql.Timestamp;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -39,7 +39,7 @@ class TaskApiControllerTest {
         //given
         String title ="Test Title";
         String content = "<h1>Hello World</h1>";
-        Timestamp deadline = Timestamp.valueOf(LocalDateTime.of(2022,6,4,0,0,0));
+        LocalDateTime deadline = LocalDateTime.of(2022,6,4,0,0,0);
         TaskWriteDto taskWriteDto = TaskWriteDto.builder()
                 .title(title)
                 .content(content)
