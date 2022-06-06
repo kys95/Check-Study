@@ -18,7 +18,7 @@ public class UserJoinDto {
     private Role role;
 
     @Builder
-    public UserJoinDto(String username, String password, String email, String nickname){
+    public UserJoinDto(String username, String password, String email, String nickname, Role role){
         this.username = username;
         this.password = password;
         this.email = email;
