@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 
 @NoArgsConstructor
@@ -26,9 +26,9 @@ public class Task {
     @Lob
     private String content;
 
-    private Timestamp createDate;
+    private LocalDateTime createDate;
 
-    private Timestamp deadline;
+    private LocalDateTime deadline;
 
     @ManyToOne
     @JoinColumn(name="userId")
