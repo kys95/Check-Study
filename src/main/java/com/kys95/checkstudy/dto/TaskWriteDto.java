@@ -1,13 +1,13 @@
 package com.kys95.checkstudy.dto;
 
 import com.kys95.checkstudy.model.Task;
-import com.kys95.checkstudy.model.User;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-import java.sql.Timestamp;
+
 import java.time.LocalDateTime;
 
 @Data
@@ -16,11 +16,11 @@ public class TaskWriteDto {
 
     private String title;
     private String content;
-    private Timestamp deadline;
+    private LocalDateTime deadline;
 
 
     @Builder
-    public TaskWriteDto(String title, String content, Timestamp deadline){
+    public TaskWriteDto(String title, String content, LocalDateTime deadline){
         this.title = title;
         this.content = content;
         this.deadline = deadline;
