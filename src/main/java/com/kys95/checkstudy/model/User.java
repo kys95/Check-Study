@@ -6,8 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 
 @NoArgsConstructor
@@ -36,5 +38,12 @@ public class User  extends BaseTimeEntity{
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @CreationTimestamp
+    private LocalDateTime createDate;
 
+    public void update(String password, String nickname, String email){
+        this.password = password;
+        this.nickname = nickname;
+        this.email=email;
+    }
 }
