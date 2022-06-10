@@ -14,9 +14,9 @@ public class UserApiController {
     private final UserService userService;
 
     @PostMapping("/api/joinProc")
-    public int joinProc(@RequestBody UserJoinDto userJoinDto){
-        userService.join(userJoinDto);
-        return HttpStatus.OK.value();
+    public boolean joinProc(@RequestBody UserJoinDto userJoinDto){
+        boolean valid = userService.join(userJoinDto);
+        return valid;
     }
 
     @PutMapping("/api/userProc/{userId}")
