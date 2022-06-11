@@ -28,7 +28,7 @@ public class TaskService {
         taskRepository.save(taskWriteDto.toEntity());
     }
 
-    @Transactional(readOnly = true)
+
     public List<Task> findList(PrincipalDetails principalDetails) {
         return taskRepository.findAllByUserId(principalDetails.getUserId());
     }
