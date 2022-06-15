@@ -16,7 +16,13 @@ public class UserController {
     }
 
     @GetMapping("loginForm")
-    public String loginForm(){
+    public String loginForm(Model model, int first){
+        boolean chk;
+        if(first==1){
+            chk =false;
+        }
+        else chk = true;
+        model.addAttribute("chk",chk);
         return "user/loginForm";
     }
 
