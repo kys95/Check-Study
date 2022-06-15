@@ -1,9 +1,6 @@
 package com.kys95.checkstudy.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,7 +9,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Data
+@Getter
 @Entity
 public class Task {
 
@@ -33,4 +30,6 @@ public class Task {
     @ManyToOne
     @JoinColumn(name="userId")
     private User user;
+
+    private int isSuccess;
 }
