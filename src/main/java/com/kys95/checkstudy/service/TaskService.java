@@ -7,10 +7,12 @@ import com.kys95.checkstudy.model.User;
 import com.kys95.checkstudy.repository.TaskRepository;
 import com.kys95.checkstudy.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -30,8 +32,16 @@ public class TaskService {
     }
 
 
-    public List<Task> findList(PrincipalDetails principalDetails) {
-        return taskRepository.findAllByUserIdAndIsSuccess(principalDetails.getUserId(),0);
+    public Page<Task> findList(PrincipalDetails principalDetails, Pageable pageable) {
+        return taskRepository.findAllByUserIdAndIsSuccess(principalDetails.getUserId(),0, pageable);
+    }
+
+
+    public Task findTask(long id) {
+        Task requestTask = taskRepository.findById(id).orElseThrow(()->{
+            return new IllegalArgumentException("해당 task를 찾을 수 없습니다");
+        });
+        return requestTask;
     }
 
 }
