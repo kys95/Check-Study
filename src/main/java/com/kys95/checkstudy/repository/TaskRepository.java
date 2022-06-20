@@ -1,10 +1,12 @@
 package com.kys95.checkstudy.repository;
 
 import com.kys95.checkstudy.model.Task;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
-    List<Task> findAllByUserIdAndIsSuccess(Long userId, int isSuccess);
+    Page<Task> findAllByUserIdAndIsSuccess(Long userId, int isSuccess, Pageable pageable);
 }
