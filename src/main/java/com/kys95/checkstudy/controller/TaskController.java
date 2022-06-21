@@ -49,8 +49,15 @@ public class TaskController {
         String username = principalDetails.getUsername();
         model.addAttribute("task",requestTask);
         model.addAttribute("username",username);
-        String deadline = requestTask.getDeadline().format(DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm"));
-        model.addAttribute("deadline",deadline);
         return "task/taskDetail";
+    }
+
+    @GetMapping("/task/update/{id}")
+    public String updatePage(@PathVariable long id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
+        Task requestTask = taskService.findTask(id);
+        String username = principalDetails.getUsername();
+        model.addAttribute("task",requestTask);
+        model.addAttribute("username",username);
+        return "task/taskUpdate";
     }
 }
