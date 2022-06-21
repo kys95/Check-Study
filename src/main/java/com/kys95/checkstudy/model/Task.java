@@ -41,4 +41,6 @@ public class Task {
 
     private int isSuccess;
 
+    private String stringDeadline;
+
 }
