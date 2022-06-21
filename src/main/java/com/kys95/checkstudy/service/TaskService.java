@@ -1,6 +1,7 @@
 package com.kys95.checkstudy.service;
 
 import com.kys95.checkstudy.config.auth.PrincipalDetails;
+import com.kys95.checkstudy.dto.TaskUpdateDto;
 import com.kys95.checkstudy.dto.TaskWriteDto;
 import com.kys95.checkstudy.model.Task;
 import com.kys95.checkstudy.model.User;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.format.DateTimeFormatter;
 
 
 @Service
@@ -28,6 +30,7 @@ public class TaskService {
         });
         taskWriteDto.setUser(findUser);
         taskWriteDto.setIsSuccess(0);
+        taskWriteDto.setStringDeadline(taskWriteDto.getDeadline().format(DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm")));
         taskRepository.save(taskWriteDto.toEntity());
     }
 
@@ -42,6 +45,17 @@ public class TaskService {
             return new IllegalArgumentException("해당 task를 찾을 수 없습니다");
         });
         return requestTask;
+    }
+
+    public void delete(long id) {
+        taskRepository.deleteById(id);
+    }
+
+    public void update(long id, TaskUpdateDto taskUpdateDto) {
+        Task requestTask = taskRepository.findById(id).orElseThrow(()->{
+            return new IllegalArgumentException("해당 task를 찾을 수 없습니다.");
+        });
+
     }
 
 }
