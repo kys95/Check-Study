@@ -32,4 +32,10 @@ public class TaskApiController {
         taskService.update(id, taskUpdateDto);
         return HttpStatus.OK.value();
     }
+
+    @PutMapping("/api/taskSuccess/{id}")
+    public int updateSuccess(@RequestBody int isSuccess , @PathVariable long id){
+        taskService.updateSuccess(id, isSuccess);
+        return HttpStatus.OK.value();
+    }
 }
