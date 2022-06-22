@@ -1,10 +1,12 @@
 package com.kys95.checkstudy.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.kys95.checkstudy.dto.TaskUpdateDto;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,8 +41,15 @@ public class Task {
     @OrderBy("id desc")
     private List<Feedback> feedbacks = new ArrayList<>();
 
+    @Setter
     private int isSuccess;
 
     private String stringDeadline;
 
+    public void update(TaskUpdateDto taskUpdateDto){
+        title = taskUpdateDto.getTitle();
+        content = taskUpdateDto.getContent();
+        deadline = taskUpdateDto.getDeadline();
+        this.stringDeadline = deadline.format(DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm"));
+    }
 }
