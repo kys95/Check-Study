@@ -5,26 +5,55 @@ let index = {
         });
         $("#btn-delete").on("click", ()=>{
             this.delete();
+        });
+        $("#btn-update").on("click", ()=>{
+            this.update();
         })
+    },
+    update:function (){
+        let data = {
+            id : $("#id").val(),
+            title: $("#title").val(),
+            content : $("#content").val(),
+            deadline:  $("#deadline").val()
+        }
+        $.ajax({
+            type : "PUT",
+            url : `/api/taskUpdate/${data.id}`,
+            data : JSON.stringify(data),
+            contentType : "application/json;utf-8"
+        })
+            .done(function (response){
+                if(response===500){
+                    alert("수정에 실패했습니다.");
+                }
+                else {
+                    alert("수정에 성공했습니다.");
+                }
+                location.href = `/task/detail/${data.id}`;
+            })
+            .fail(function (error){
+                JSON.stringify(error);
+            })
     },
     delete: function (){
         let data = {
             id: $("#id").val()
         }
-            $.ajax({
-                type:"DELETE",
-                url:`/api/taskDelete/${data.id}`,
-                contentType: "application/json;utf-8"
+        $.ajax({
+            type:"DELETE",
+            url:`/api/taskDelete/${data.id}`,
+            contentType: "application/json;utf-8"
+        })
+            .done(function (response){
+                if(response===500){
+                    alert("삭제에 실패했습니다.");
+                }
+                else{
+                    alert("삭제에 성공했습니다.");
+                }
+                history.back("");
             })
-                .done(function (response){
-                    if(response===500){
-                        alert("삭제에 실패했습니다.");
-                    }
-                    else{
-                        alert("삭제에 성공했습니다.");
-                    }
-                    history.back();
-                })
             .fail(function (error){
                 alert(JSON.stringify(error));
             })
