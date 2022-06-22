@@ -40,6 +40,18 @@ public class TaskController {
         model.addAttribute("username", principalDetails);
         model.addAttribute("nextPage", nextPage);
         model.addAttribute("pagingTasks",pagingTasks);
+        model.addAttribute("title","To_Do_List");
+        return "task/taskView";
+    }
+
+    @GetMapping("/todolist/success")
+    public String successTaskView(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails, @PageableDefault(size=8, sort = "deadline", direction = Sort.Direction.ASC) Pageable pageable, int page){
+        Page<Task> pagingTasks = taskService.findSuccessList(principalDetails, pageable);
+        int nextPage = pagingTasks.getNumber()+1;
+        model.addAttribute("username",principalDetails);
+        model.addAttribute("nextPage",nextPage);
+        model.addAttribute("pagingTasks",pagingTasks);
+        model.addAttribute("title","Success List");
         return "task/taskView";
     }
 
@@ -49,6 +61,10 @@ public class TaskController {
         String username = principalDetails.getUsername();
         model.addAttribute("task",requestTask);
         model.addAttribute("username",username);
+        boolean isSuccess;
+        if(requestTask.getIsSuccess()!=0) isSuccess=true;
+        else isSuccess=false;
+        model.addAttribute("isSuccess",isSuccess);
         return "task/taskDetail";
     }
 
