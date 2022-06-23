@@ -40,6 +40,7 @@ public class TaskService {
     }
 
 
+
     public Task findTask(long id) {
         Task requestTask = taskRepository.findById(id).orElseThrow(()->{
             return new IllegalArgumentException("해당 task를 찾을 수 없습니다");
