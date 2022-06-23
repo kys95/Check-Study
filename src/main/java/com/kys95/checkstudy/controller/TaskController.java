@@ -40,7 +40,7 @@ public class TaskController {
         model.addAttribute("username", principalDetails);
         model.addAttribute("nextPage", nextPage);
         model.addAttribute("pagingTasks",pagingTasks);
-        model.addAttribute("title","To_Do_List");
+        model.addAttribute("title","ToDo_List");
         return "task/taskView";
     }
 
@@ -59,8 +59,10 @@ public class TaskController {
     public String taskDetail(@PathVariable long id, Model model, @AuthenticationPrincipal PrincipalDetails principalDetails){
         Task requestTask = taskService.findTask(id);
         String username = principalDetails.getUsername();
+        Long userId = principalDetails.getUserId();
         model.addAttribute("task",requestTask);
         model.addAttribute("username",username);
+        model.addAttribute("userId",userId);
         boolean isSuccess;
         if(requestTask.getIsSuccess()!=0) isSuccess=true;
         else isSuccess=false;
