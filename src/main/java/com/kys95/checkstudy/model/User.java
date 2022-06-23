@@ -38,8 +38,6 @@ public class User  extends BaseTimeEntity{
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @CreationTimestamp
-    private LocalDateTime createDate;
 
     public void update(String password, String nickname, String email){
         this.password = password;
