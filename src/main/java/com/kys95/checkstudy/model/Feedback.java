@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Feedback {
+public class Feedback extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,8 +18,6 @@ public class Feedback {
 
     private String content;
 
-    @CreatedDate
-    private LocalDateTime createDate;
 
     @ManyToOne
     @JoinColumn(name = "userId")
