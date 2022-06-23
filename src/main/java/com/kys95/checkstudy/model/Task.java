@@ -16,7 +16,7 @@ import java.util.List;
 @Builder
 @Getter
 @Entity
-public class Task {
+public class Task extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,6 @@ public class Task {
     @Lob
     private String content;
 
-    private LocalDateTime createDate;
 
     private LocalDateTime deadline;
 
