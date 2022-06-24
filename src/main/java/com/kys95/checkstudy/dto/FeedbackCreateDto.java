@@ -1,9 +1,10 @@
 package com.kys95.checkstudy.dto;
 
 import lombok.Builder;
-import lombok.Setter;
+import lombok.Data;
 
-@Setter
+
+@Data
 public class FeedbackCreateDto {
     private long userId;
     private long taskId;
