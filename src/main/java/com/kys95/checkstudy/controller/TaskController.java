@@ -52,6 +52,7 @@ public class TaskController {
         model.addAttribute("nextPage",nextPage);
         model.addAttribute("pagingTasks",pagingTasks);
         model.addAttribute("title","Success List");
+        model.addAttribute("successPage",true);
         return "task/taskView";
     }
 
