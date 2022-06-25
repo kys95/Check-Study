@@ -14,28 +14,51 @@ let index = {
         });
         $("#feedback-create").on("click",()=>{
             this.createFeedback();
+        });
+        $("#feedback-delete").on("click",()=>{
+            this.deleteFeedback();
+        });
+    },
+    deleteFeedback: function (){
+        let id=$("#feedback-id").val();
+        $.ajax({
+            type:"DELETE",
+            url:`/api/feedback/delete/${id}`,
+            contentType: "application/json;utf-8"
         })
+            .done(function (response){
+                alert("삭제되었습니다.");
+                location.reload();
+            })
+            .fail(function (error){
+                JSON.stringify(error);
+            });
     },
     createFeedback: function (){
-        data={
-            user:$("#userId"),
-            task:$("#userId"),
-            content:$("#feedback"),
+        let data={
+            userId:$("#userId").val(),
+            taskId:$("#taskId").val(),
+            content:$("#feedback").val(),
+        }
+        console.log(data.taskId);
+        if(data.content==""){
+            alert("피드백 내용을 입력해주세요.");
+            return;
         }
         $.ajax({
             type:"POST",
             url:"/api/task/create",
             data:JSON.stringify(data),
-            dataType:"application/json;utf-8"
+            contentType:"application/json;utf-8"
         })
             .done(function (response){
                 if(response===500){
-                    alert("댓글 작성에 실패했습니다.");
+                    alert("피드백 작성에 실패했습니다.");
                 }
                 else {
-                    alert("댓글 작성에 성공했습니다.");
+                    alert("피드백 작성에 성공했습니다.");
                 }
-                window.location.reload();
+                location.reload();
             })
             .fail(function (error){
                 alert(JSON.stringify(error));
@@ -91,7 +114,7 @@ let index = {
     },
     delete: function (){
         let data = {
-            id: $("#id").val()
+            id: $("#taskId").val()
         };
         $.ajax({
             type:"DELETE",
