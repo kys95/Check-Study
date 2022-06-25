@@ -9,10 +9,15 @@
     <h2>{{title}}</h2>
     <br>
     <table class="table">
+        {{^successPage}}
+        <thead class="table-warning">
+        {{/successPage}}
+        {{#successPage}}
         <thead class="table-success">
+        {{/successPage}}
         <tr>
             <th>user</th>
-            <th style="width: 50vw">title</th>
+            <th style="width: 30vw">title</th>
             <th>deadline</th>
         </tr>
         </thead>
@@ -21,7 +26,7 @@
             <tr>
                 <td>null</td>
                 <td>{{user.nickname}}</td>
-                <td style="width: 50vw"><a href="/task/detail/{{id}}">{{title}}</a></td>
+                <td style="width: 30vw"><a href="/task/detail/{{id}}">{{title}}</a></td>
                 <td>{{stringDeadline}}</td>
             </tr>
         {{/pagingTasks.content}}
@@ -46,9 +51,10 @@
             {{/pagingTasks.last}}
         </ul>
     </div>
-
+    {{^successPage}}
     <div class="d-flex justify-content-end">
         <a href="/taskForm"><button class="btn btn-primary">작성하기</button></a>
     </div>
+    {{/successPage}}
 </div>
 {{> layout/footer}}
