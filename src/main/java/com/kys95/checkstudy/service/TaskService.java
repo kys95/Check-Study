@@ -12,7 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.time.format.DateTimeFormatter;
 
 
@@ -34,13 +34,13 @@ public class TaskService {
         taskRepository.save(taskWriteDto.toEntity());
     }
 
-
+    @Transactional(readOnly = true)
     public Page<Task> findList(PrincipalDetails principalDetails, Pageable pageable) {
         return taskRepository.findAllByUserIdAndIsSuccess(principalDetails.getUserId(),0, pageable);
     }
 
 
-
+    @Transactional(readOnly = true)
     public Task findTask(long id) {
         Task requestTask = taskRepository.findById(id).orElseThrow(()->{
             return new IllegalArgumentException("해당 task를 찾을 수 없습니다");
@@ -48,10 +48,12 @@ public class TaskService {
         return requestTask;
     }
 
+    @Transactional
     public void delete(long id) {
         taskRepository.deleteById(id);
     }
 
+    @Transactional
     public void update(long id, TaskUpdateDto taskUpdateDto) {
         Task requestTask = taskRepository.findById(id).orElseThrow(()->{
             return new IllegalArgumentException("해당 task를 찾을 수 없습니다.");
@@ -59,10 +61,12 @@ public class TaskService {
         requestTask.update(taskUpdateDto);
     }
 
+    @Transactional(readOnly = true)
     public Page<Task> findSuccessList(PrincipalDetails principalDetails, Pageable pageable) {
         return taskRepository.findAllByUserIdAndIsSuccess(principalDetails.getUserId(),1, pageable);
     }
 
+    @Transactional
     public void updateSuccess(long id, int successSwc) {
         Task requestTask = taskRepository.findById(id).orElseThrow(()->{
             return new IllegalArgumentException("해당 task를 찾을 수 없습니다.");
