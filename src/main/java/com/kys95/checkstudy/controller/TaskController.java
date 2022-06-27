@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 
 @Controller
@@ -32,15 +30,14 @@ public class TaskController {
         return "task/taskForm";
     }
 
-    @ResponseBody
-    public String taskView(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails,
-                               @PageableDefault(size=8, sort = "deadline", direction = Sort.Direction.ASC) Pageable pageable, int page) {
-        Page<Task> pagingTasks  = taskService.findList(principalDetails, pageable);
+    @GetMapping("/todolist/proceeding")
+    public String taskView(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails, @PageableDefault(size=8, sort = "deadline", direction = Sort.Direction.ASC) Pageable pageable, int page){
+        Page<Task> pagingTasks = taskService.findList(principalDetails, pageable);
         int nextPage = pagingTasks.getNumber()+1;
-        model.addAttribute("username", principalDetails);
-        model.addAttribute("nextPage", nextPage);
+        model.addAttribute("username",principalDetails);
+        model.addAttribute("nextPage",nextPage);
         model.addAttribute("pagingTasks",pagingTasks);
-        model.addAttribute("title","ToDo_List");
+        model.addAttribute("title","ToDo List");
         return "task/taskView";
     }
 
