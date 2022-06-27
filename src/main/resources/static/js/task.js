@@ -49,7 +49,7 @@ let index = {
             type:"POST",
             url:"/api/task/create",
             data:JSON.stringify(data),
-            contentType:"application/json;utf-8"
+            contentType : "application/json;utf-8"
         })
             .done(function (response){
                 if(response===500){
@@ -113,26 +113,26 @@ let index = {
             })
     },
     delete: function (){
-        let data = {
-            id: $("#taskId").val()
-        };
-        $.ajax({
-            type:"DELETE",
-            url:`/api/taskDelete/${data.id}`,
-            contentType: "application/json;utf-8"
-        })
-            .done(function (response){
-                if(response===500){
-                    alert("삭제에 실패했습니다.");
-                }
-                else{
-                    alert("삭제에 성공했습니다.");
-                }
-                history.back("");
-            })
-            .fail(function (error){
-                alert(JSON.stringify(error));
-            })
+       let data = {
+           id: $("#taskId").val()
+       }
+       $.ajax({
+           type:"DELETE",
+           url:`/api/taskDelete/${data.id}`,
+           contentType: "application/json;utf-8"
+       })
+           .done(function (response){
+               if(response===500){
+                   alert("삭제에 실패했습니다.");
+               }
+               else{
+                   alert("삭제에 성공했습니다.");
+               }
+               history.back("");
+           })
+           .fail(function (error){
+               alert(JSON.stringify(error));
+           })
 
     },
     save: function (){
