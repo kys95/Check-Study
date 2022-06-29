@@ -1,6 +1,7 @@
 package com.kys95.checkstudy.api;
 
 import com.kys95.checkstudy.config.auth.PrincipalDetails;
+import com.kys95.checkstudy.dto.TaskSuccessDto;
 import com.kys95.checkstudy.dto.TaskUpdateDto;
 import com.kys95.checkstudy.dto.TaskWriteDto;
 import com.kys95.checkstudy.service.TaskService;
@@ -34,8 +35,8 @@ public class TaskApiController {
     }
 
     @PutMapping("/api/taskSuccess/{id}")
-    public int updateSuccess(@RequestBody int isSuccess , @PathVariable long id){
-        taskService.updateSuccess(id, isSuccess);
+    public int updateSuccess(@RequestBody TaskSuccessDto taskSuccessDto, @PathVariable long id){
+        taskService.updateSuccess(id, taskSuccessDto.getIsSuccess());
         return HttpStatus.OK.value();
     }
 }
