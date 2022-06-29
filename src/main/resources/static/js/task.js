@@ -65,12 +65,15 @@ let index = {
             });
     },
     success: function (){
-        let id = $("#id").val();
-         let  isSuccess = $("#isSuccess").val();
+        let data={
+            id:$("#taskId").val(),
+            isSuccess:$("#isSuccess").val(),
+        }
+
         $.ajax({
             type:"PUT",
-            url:`/api/taskSuccess/${id}`,
-            data : JSON.stringify(isSuccess),
+            url:`/api/taskSuccess/${data.id}`,
+            data : JSON.stringify(data),
             contentType:"application/json;utf-8"
         })
             .done(function (response){
@@ -80,7 +83,7 @@ let index = {
                 else {
                     alert("수정에 성공했습니다.");
                 }
-                location.href=`http://localhost:8080/task/detail/${id}`;
+                location.href = `/task/detail/${data.id}`;
             })
             .fail(function (error){
                 alert(JSON.stringify(error));
