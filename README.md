@@ -1,6 +1,6 @@
 # Check-Study
 ## Spring Boot(Gradle), JPA(MySQL), Jquery
-### Todo List Web 
+### Todo List Web Project
 - - -
 
 ## 프로젝트 구성
