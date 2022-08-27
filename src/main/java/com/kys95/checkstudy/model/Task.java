@@ -38,7 +38,7 @@ public class Task extends BaseTimeEntity{
     @OneToMany(mappedBy = "task" ,fetch = FetchType.LAZY, cascade =  CascadeType.REMOVE)
     @JsonIgnoreProperties({"task"})
     @OrderBy("id desc")
-    private List<Feedback> feedbacks = new ArrayList<>();
+    private List<Feedback> feedbacks;
 
     @Setter
     private int isSuccess;

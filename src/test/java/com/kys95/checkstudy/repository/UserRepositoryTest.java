@@ -1,6 +1,7 @@
 package com.kys95.checkstudy.repository;
 
 
+
 import com.kys95.checkstudy.model.User;
 
 import org.junit.jupiter.api.Test;
@@ -15,9 +16,9 @@ import static com.kys95.checkstudy.model.Role.USER;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
+@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 public class UserRepositoryTest {
 
     @Autowired
