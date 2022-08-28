@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: demo
+  profiles:
+    active:
+  devtools:
+    livereload:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update #create update none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+
+---
+
+spring:
+  profiles:
+    active: real
+
+---
+
+spring:
+  profiles:
+    active: local
+
+---
+
